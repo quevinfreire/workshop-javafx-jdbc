@@ -9,6 +9,9 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.Properties;
 
+import gui.util.Alerts;
+import javafx.scene.control.Alert.AlertType;
+
 public class DB {
 
 	private static Connection conn = null;
@@ -21,7 +24,8 @@ public class DB {
 			conn = DriverManager.getConnection(url, props);
 			}
 			catch (SQLException e) {
-				throw new DbException (e.getMessage());
+				Alerts.showAlert("Error: DB conections failure", null, e.getMessage(), AlertType.WARNING);
+				//throw new DbException (e.getMessage());
 			}
 		}
 		return conn;
